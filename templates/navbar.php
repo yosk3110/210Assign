@@ -45,6 +45,8 @@
       }
       .titleContainer{
         font-size: 2.8em;
+        padding-top: 5px;
+        padding-bottom: 15px;
         text-align: center;
         background-color: #166483;
         color: white;

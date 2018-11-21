@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tempStyle.css">
   <title>Template</title>
 </head>
