@@ -1,0 +1,39 @@
+<html>
+
+<head><title>French Translation</title>
+
+<script language="JavaScript">
+var numbers = new Array();
+numbers.length = 6
+
+numbers[0] = "un"
+numbers[1] = "deux"
+numbers[2] = "trois"
+numbers[3] = "quatre"
+numbers[4] = "cinq"
+numbers[5] = "six"
+</script>
+</head>
+
+<body bgcolor=aqua>
+<h2>The Translation Machine </h2>
+<font face="arial">
+<hr width=75%>
+
+<form name="list" method="post">
+<p>Enter an integer between 1 and 6:
+<input name="number" type="text" size=3></p>
+
+Our script will dynamically change the value of the translation object.
+<p>
+The French Equivalent is :<input name="translation" type="text">
+</p>
+<hr width=75%>
+<input type="button" value="Translation Please!" OnClick="document.list.translation.value=numbers[document.list.number.value-1]">
+<input type="reset" value="Clear This Form">
+
+</form>
+</font>
+
+</body>
+</html>

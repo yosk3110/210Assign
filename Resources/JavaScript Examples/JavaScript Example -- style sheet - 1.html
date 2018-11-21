@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Changing Appearance</title>
+</head>
+
+<body>
+<style type="text/css">
+   .example1 {color:green;}
+   #example {color:green;}
+</style>
+
+<div ID="example">
+<layer ID="nexample">
+   <p>Here is a paragraph that is part of a style sheet</p>
+</layer>
+</div>
+
+<script type="text/JavaScript">
+var i=0;
+   function change_text()
+      {
+      if (navigator.appVersion.charAt(0) >= "4")
+         {
+         if (navigator.appName == "Netscape")
+            {
+	    i++
+	    document.nexample.document.open();
+	    document.nexample.document.fgColor="red";
+	    document.nexample.document.write(i + "red");
+	    document.nexample.document.close();
+            }
+         else
+            {
+            document.all.example.style.color="red";
+            }
+         }
+      }
+
+</script>
+<br><br><br>
+<layer onMouseOver='change_text();'>
+<p onMouseOver='change_text();'>Mouse over me to change the style above</p> 
+</layer>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head><title>Email User Info</title>
+
+<script language="JavaScript">
+
+var startTime = new Date();
+startTime = startTime.getTime();
+var submissions = 0;
+
+function checkForDuplicate() {
+ if (document.form1) {
+  document.form1.REFERRER.value = document.referrer;
+  document.form1.PLATFORM.value = navigator.appName
+   + " " + navigator.appVersion;
+  submissions++;
+  if (submissions > 1)
+   return false;
+  else
+   return true;
+ } else {
+  return false;
+ }
+} 
+
+function doneLoading() {
+
+ var stopTime = new Date();
+ stopTime = stopTime.getTime();
+ document.form1.LOADING_TIME.value = ((stopTime - startTime) / 1000)
+  + " seconds";
+ document.form1.PAGE.value = document.title;
+ document.form1.SUBMITTER.click(); 
+
+}
+
+</script>
+</head>
+
+<body onLoad="doneLoading()">
+
+<form name="form1" method=post action="mailto:me@aol.com?subject=test form" enctype="text/plain" onSubmit="return checkForDuplicate()">
+What is your name? <input type="text" name="name"> <br>
+<input type="hidden" name="PAGE" value="none">
+<input type="hidden" name="REFERRER" value="none">
+<input type="hidden" name="PLATFORM" value="none">
+<input type="hidden" name="LOADING_TIME" value="none">
+<input type="submit" name="SUBMITTER" value="Send in Form">
+
+</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head><title>Basic Greater Than Statement</title>
+
+<script language="Javascript">
+
+function function1(x) {
+
+var dToday = new Date()
+var nSeconds = dToday.getSeconds()
+
+if (nSeconds > 30) {
+alert(x + "We are MORE than halfway through this minute Seconds=" + nSeconds )
+}
+
+else {
+alert(x + "We are LESS than halfway through this minute Seconds=" + nSeconds )
+}
+
+return x;
+}
+</script>
+</head>
+
+<body>
+
+<form>
+<input type="button" value="The where-are-we-in-this-minute button " onClick="y = function1('abc'); document.forms[0].field1.value = y;">
+<input type="text" name="field1">
+</form>
+
+</body>
+</html>

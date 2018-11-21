@@ -1,0 +1,89 @@
+header {
+	padding: 0px;
+	background-color: lightblue;
+	height: 100px;
+	width: 100%;
+	z-index: 1;
+	margin:0;
+}
+body {
+	background-image: url("images/background.png");
+	background-size: cover;
+	background-repeat: repeat-x;
+	margin: 0;
+	height:100%;
+}
+footer{
+	background-color: lightblue;
+	bottom: 0px;
+	width: 100%;
+	height: 50px;
+}
+nav{
+	position: fixed;
+	padding: 10px;
+	top: 120px;
+	right: 0px;
+}
+section{
+
+}
+a:link {
+	text-decoration: underline overline;
+	color: orange;
+	font-size: 2em;
+}
+
+a:visited{
+	text-decoration: wavy;
+	color: red;
+}
+
+a:hover{
+	background-color: black;
+}
+
+img {
+	float: left;
+	height: 150px;
+}
+
+.flex-container {
+	display: flex;
+	background-color: lightblue;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.flex-container > div {
+	margin: 0px;
+	padding: 10px;
+	height: 250px;
+}
+h1 {
+	text-align: center;
+}
+.imagetable{
+	border: 5px inset grey;
+	padding: 10px;
+	margin-left:auto;
+	margin-right:auto;
+	clear: left;
+}
+.imagetable img{
+	height: 150px;
+}
+div.gallery {
+	margin: 10px;
+	border: 5px solid grey;
+	float: left;
+	height: 100px;
+}
+div.gallery img {
+	width: auto;
+	height: 100%;
+}
+.icons{
+	float:right;
+	height: 50px;
+}

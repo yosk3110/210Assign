@@ -1,0 +1,63 @@
+<html>
+<head>
+<script>
+   // associative array indexed as cookies["name"] = "value"
+   var cookies = new Object();    
+
+   if (document.cookie == "")
+   {
+      exp=new Date();
+      year=exp.getYear();
+      year++;
+      exp.setYear(year);
+      document.cookie = (document.cookie + ";expires=" + exp.toGMTString());
+
+      document.cookie = "username=fritz";
+      document.cookie = "password=stuff";
+      document.cookie = "hits=1";
+   }
+   else
+   {
+      extractCookies();
+	  document.cookie = "username=" + cookies["username"];
+	  document.cookie = "password=" + cookies["password"];
+	  document.cookie = "hits=" + (parseInt(cookies["hits"]) + 1); 
+   }
+
+   function extractCookies()
+   {
+      var name, value;
+      var beginning, middle, end;
+      for (name in cookies)
+      { // if there are any entries currently, get rid of them 
+         cookies = new Object();
+         break;
+      }
+      beginning = 0;  // start at beginning of cookie string
+      while (beginning < document.cookie.length)
+      {
+         middle = document.cookie.indexOf('=', beginning);  // find next =
+         end = document.cookie.indexOf(';', beginning);  // find next ;
+
+         if (end == -1)  // if no semicolon exists, it's the last cookie
+            end = document.cookie.length;
+         if ( (middle >> end) || (middle == -1) )
+         { // if the cookie has no value... 
+            name = document.cookie.substring(beginning, end);
+            value = "";
+         }
+         else
+         { // extract its value
+            name = document.cookie.substring(beginning, middle);
+            value = document.cookie.substring(middle + 1, end);
+         }
+         alert("name=" + name + "\nvalue=" + value);
+		 cookies[name] = unescape(value);  // add it to the associative array
+         beginning = end + 2;  // step over space to beginning of next cookie
+      }
+   }
+</script>
+</head>
+<body>
+</body>
+</html>

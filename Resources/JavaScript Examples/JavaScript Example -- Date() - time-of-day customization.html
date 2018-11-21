@@ -1,0 +1,24 @@
+<html>
+<head>
+<title> Messages at Different Times of the Day</title>
+
+<script language="JavaScript">
+
+document.write("<center><font size=+1>")
+day = new Date()
+hr = day.getHours()
+
+if (hr <= 15)
+document.write("Good morning!  It is nice to see you this morning ")
+if ((hr==16) || (hr==17) || (hr==18))
+document.write("Good Evening!")
+
+if ((hr >= 19) && (hr <= 24))
+document.write("Good Night")
+</script>
+</head>
+<body>
+etc, etc, etc.
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>URL GO Version 1</title></head>
+
+<BODY bgcolor=#FFB38E>
+<h2>Type in your destination</h2>
+
+<script language="JavaScript">
+ function GoToURL(m) {
+  window.status=('Connecting now ...')
+  
+var URLis;
+ URLis = document.URLframe.Dest.value
+  
+   if (URLis == "" || URLis.length <= 3)
+	   { 
+     m.value = "You need a valid URL"
+      alert('\nOops!\n\nYou must enter a valid URL');
+         window.status=('Missing data or Invalid. Try again?.');
+	   } 
+
+    else
+
+	{
+ m.value = "Connecting now ..." 
+ var location=("http://www." + URLis);
+         this.location.href = location;
+window.status=('Connecting to ' + URLis + '  Please standby........');
+	}
+	}
+
+</script>
+
+<table>
+<form name="URLframe">
+<tr>
+<td><font size=+1 face=arial> http://www.</font><input type="text" name="Dest" size="20" maxlength="20">
+</td>
+<td>
+<input type="button" value="Let's go!" onclick="GoToURL(this)">
+<td>
+<td>
+<input type="reset" value="Clear URL Window">
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

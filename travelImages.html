@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Travel Images</title>
+    <script type="text/javascript">
+      var travelImages = [new Image(), new Image(), new Image()];
+      var travelUrls = ["https://www.beautifulworld.com/south-america/argentina/iguazu-falls/",
+        "https://www.sftravel.com/",
+        "https://www.visitcopenhagen.com/copenhagen-tourist"]
+
+      // var travelImages = new Array(new Image(), new Image);
+      travelImages[0].src = "media/IguassuFallsBrazilColloidConf.jpg"
+      travelImages[1].src = "media/GoldenGateBridge.jpg"
+      travelImages[2].src = "media/DenmarkCopenhagen.jpg"
+      var travelDetails = ["Visit Iguassu Falls", "San Fransisco", "Take a trip to Copenhagen"]
+
+      function displayImage(index){
+        document.getElementById("img0").src = travelImages[index].src;
+      }
+      //annonamous function
+      var showURL = function (index){
+        var win1 = open(travelUrls[index]);
+        var timer = setTimeout(function(){win1.close();}, 3500);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Vacation Destinations Available</h1>
+    <table>
+      <script>
+        for (var i = 0; i < travelDetails.length; i++) {
+          document.write("<tr>");
+          document.write("<td onmouseover='displayImage(" + i + ");' >" + travelDetails[i] + "</td>");
+          document.write("<td><img src=\"" + travelImages[i].src + "\" onclick='showURL(" + i + ");'/></td>");
+          document.write("</tr>");
+        }
+
+      </script>
+    </table>
+    <img id="img0" src="media/IguassuFallsBrazilColloidConf.jpg" alt="">
+  </body>
+</html>

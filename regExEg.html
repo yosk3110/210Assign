@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      function validate(myForm){
+        //regEx starts with a /
+        //regex inside [] all the potential characters in the beginning of email
+        // + at end is at least one of these charset
+        //The domain section is surrounded by ()+ since that portion can repeat
+        //The final section requires at least 2 characters up to 10
+        var regEx = /[a-zA-Z][a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@([a-zA-Z][a-zA-Z0-9-]+\.)+[a-zA-Z]{2,10}$/
+        // the ? is zero or one in this case checking for a " "
+        // ^ rejects anything before $reject anything after
+        // the i at the end ignores case
+        var regPost = /(^[a-z]\d[a-z] ?\d[a-z]\d$)|(\d{5}) /i;
+        if(!regEx.test(myForm.email.value)){
+          alert("invalid email");
+          return false;
+        }
+        if(!regPost.test(myForm.postal.value)){
+          alert("invalid postal code");
+          return false;
+        }
+        return true;
+      }
+      function changeColor(){
+        var para = document.getElementById("para1");
+        if(para.style.backgroundColor == "red"){
+          para.style.backgroundColor = "green";
+        }
+        else{
+          para.style.backgroundColor = "red"
+        }
+      }
+      function getRandom(){
+        var txt = document.getElementById("myNumber");
+        txt.value = Math.ceil(Math.random()*20);
+      }
+    </script>
+    <style>
+      p{
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="" action="index.html" method="post">
+      Email: <input type="email" name="email" id="email"/><br>
+      Postal: <input type="text" name="postal" id="postal"/><br>
+      <input type="submit" value="Send" onclick="return validate(this.form);"/>
+    </form>
+
+    <script type="text/javascript">
+      var myString = "This text has the email address asdfg.asd@email.com";
+      var reg = new RegExp(/\b[a-zA-Z][a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(([a-zA-Z][a-zA-Z0-9-]+\.)+[a-zA-Z]{2,10}$)\b/igm);
+      var res = reg.exec(myString);
+      document.write("Email: "+ res[0] + "<br>");
+      document.write("domain: " + res[1]+ "<br>");
+    </script>
+    <br>
+    <button type="button" name="button" onclick="changeColor()">Click</button>
+    <p id="para1">Paragraph</p>
+    <script type="text/javascript">
+      document.write(Math.PI);
+    </script>
+    <br>
+    <input type="text" id="myNumber"/>
+    <button onclick="getRandom()">Generate number</button>
+
+  </body>
+</html>

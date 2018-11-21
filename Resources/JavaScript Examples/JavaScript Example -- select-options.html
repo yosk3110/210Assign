@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>URL Go</title>
+<script language="JavaScript">
+
+URL = new Array();
+
+URL[0] = "http://www.yahoo.com";
+URL[1] = "http://www.excite.com";
+URL[2] = "http://www.metacrawler.com";
+URL[3] = "http://www.dogpile.com";
+
+function newPage (form)
+   {
+   var len = form.urllist.length;
+   document.form2.result.value = "The select has " + len + " items\n";
+
+   typ = document.form1.urllist.type;
+   document.form2.result.value = document.form2.result.value + "The select type is " + typ + "\n";
+
+   selind = document.form1.urllist.selectedIndex;
+   document.form2.result.value = document.form2.result.value + "Selected Index: " + selind + "\n";
+
+   urlind = document.form1.urllist.selectedIndex;
+   document.form2.result.value = document.form2.result.value + "The URL for that index is: " + URL[urlind] + "\n";
+
+   for (i=0; i<form.urllist.length; i++)
+      {      
+      selstat = document.form1.urllist.options[i].selected;
+      document.form2.result.value = document.form2.result.value + "Item "+ i + " Selection Status: " + selstat + "\n";
+      }
+
+   }
+
+</script>
+</head>
+
+<body bgcolor="yellow">
+<center><font face=arial size=+1>
+Click on the drop-down menu, make your selection, and then select Go!</font>
+
+<form name="form1">
+<select name="urllist">
+<option>Yahoo
+<option>Excite
+<option>Metacrawler
+<option>DogPile
+</select>
+<input type="button" name="button" value="Go!" onClick="newPage(this.form)">
+</form>
+
+</center>
+<hr width=75%>
+
+<center>
+<form name="form2">
+<textarea name="result" rows=8 cols=60></textarea>
+</form>
+</center>
+
+</body>
+</html>

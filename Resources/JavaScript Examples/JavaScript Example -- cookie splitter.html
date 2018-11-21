@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Cookie Test</TITLE>
+<SCRIPT type="text/JavaScript">
+   function updateCookie() 
+   {
+      document.cookie="fname=" + document.form1.fname.value;
+      document.cookie="lname=" + document.form1.lname.value;
+      location.reload(true)
+   }
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT type="text/JavaScript">
+   document.write(document.cookie + "<br />");
+   var cookieString = document.cookie;
+   cookieArray = cookieString.split("; ");
+   for (myCookie in cookieArray)
+   {
+      nameVal = cookieArray[myCookie].split("=");
+      document.write("cookie " + nameVal[0] + " value is: '" + nameVal[1] + "<br />");
+   }
+</SCRIPT>
+<FORM ACTION="" NAME="form1">
+<P>Enter first name: <INPUT TYPE="TEXT" SIZE="60" NAME="fname"></P>
+<P>Enter last name: <INPUT TYPE="TEXT" SIZE="60" NAME="lname"></P>
+<INPUT TYPE="BUTTON" NAME="setCookie" VALUE="Set Cookie" onClick="updateCookie()">
+</FORM>
+</BODY>
+</HTML>

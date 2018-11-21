@@ -1,0 +1,561 @@
+<html>
+<head><title>Daneel's Home</title>
+
+<!-- INCLUDE JAVASCRIPT -->
+<script language = JavaScript>
+  var n = 0;
+  var ie = 0;
+  var loop, timer1, timer2, speed;
+
+  if (document.layers) {
+    n = 1;
+  }
+
+  if (document.all) {
+    ie = 1;
+  }
+
+  function makeObj(obj, nest){
+    if (!nest == 1) {
+      nest = '';
+    }
+    else {
+      nest = 'document.' + nest + '.';
+    }
+
+    if (n == 1) {
+      this.css = eval(nest + 'document.' + obj);
+    }
+    else {
+      this.css = eval(obj + '.style');
+    }
+
+    this.up = goUp;
+    this.down = goDown;
+    this.obj = obj + "Object";
+    eval(this.obj + "=this");
+    return this;
+  }
+
+  function goDown() {
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    this.css.top = parseInt(this.css.top) + 3;
+    if (loop) { 
+      timer1 = setTimeout(this.obj + ".down(" + speed + ")", speed);
+    }
+  }
+
+  function goUp() {
+    clearTimeout(timer2);
+    clearTimeout(timer1);
+    this.css.top = parseInt(this.css.top) - 3;
+    if (loop) { 
+      timer2=setTimeout(this.obj + ".up(" + speed + ")", speed);
+    }
+  }
+
+  function init() {
+    testObj=makeObj('test2', 'test');
+  movesheets();
+  }
+
+function movesheets() {
+ if (document.layers) {
+  document.test.left=((window.innerWidth-780)/2)+120+5;
+  document.button.left=((window.innerWidth-780)/2)+120+210;
+  document.test.visibility="show";
+  document.button.visibility="show";
+ }
+ if (document.all) {
+  document.all.test.style.left=((document.body.clientWidth-780)/2)+120+5;
+  document.all.button.style.left=((document.body.clientWidth-780)/2)+120+210;
+  document.all.test.style.visibility="visible";
+  document.all.button.style.visibility="visible";
+ }
+}
+
+onload=init;
+</script>
+
+
+</head>
+
+<body bgcolor=#bbddff link=blue vlink=blue>
+
+<table width=780 border=0 cellspacing=0 bgcolor=black align=center>
+<tr>
+<td>
+  <table width=780 border=0 cellspacing=0 bgcolor=white align=center>
+  <tr>
+
+    <!--  MAINMENUE! -->
+     <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../personal/index.shtml style="text-decoration: none" id="main1">
+    Personal
+   </a>
+  </font>
+ </td>
+
+ <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../gallery/index.shtml style="text-decoration: none" id="main2">
+    Gallery
+   </a>
+  </font>
+ </td>
+
+ <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../interests/index.shtml style="text-decoration: none" id="main3">
+    Interests
+   </a>
+  </font>
+ </td>
+
+ <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../work_studies/index.shtml style="text-decoration: none" id="main4">
+    Work & Studies
+   </a>
+  </font>
+ </td>
+
+ <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../projects/index.shtml style="text-decoration: none" id="main5">
+    Projects
+   </a>
+  </font>
+ </td>
+
+ <td align=center width=16%>
+  <font face=arial size=2>
+   <a href=../links/index.shtml style="text-decoration: none" id="main6">
+    Links
+   </a>
+  </font>
+ </td>
+
+
+
+
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+<font size=1><br></font>
+
+<table width=780 height=780 align=center border=0 cellspacing=0 cellpadding=0>
+<tr>
+<td valign=top>
+  <table height=390 width=100 border=0 cellspacing=0 bgcolor=black>
+  <tr>
+  <td>
+    <table height=390 width=100 border=0 cellspacing=0 bgcolor=white>
+    <tr>
+    <td valign=top>
+      <br>
+
+        <!-- SUB - MENU -->
+         
+
+    </td>
+    </tr>
+    </table>
+  </td>
+  </tr>
+  </table>  
+</td>
+
+<td width=10>
+</td>
+
+<td valign=top>
+  <table width=670 height=390 border=0 cellspacing=0 bgcolor=black> 
+  <tr>
+  <td>
+    <table width=670 height=390 border=0 cellspacing=0 bgcolor=white>
+    <tr>
+    <td>
+
+      &nbsp;
+
+    </td>
+    </tr>
+    </table>
+  </td>
+  </tr>
+  </table>
+</td>
+
+</tr>
+</table>
+
+<!-- CSS SECTION -->
+
+<!-- BUUUUUUUTTTTTTTTTTTONNNNNNNNNNNNN -->
+
+<div id="button"
+     style="position:absolute;
+     left:300px;
+     top:390px;
+     width:240px;
+     visibility:hidden"
+>
+
+<table bgcolor=black><tr><td>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 10;
+                  }
+                 if (document.all) {
+                  speed = 10;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#FF0000 face=arial><font color=black>&nbsp;</font>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 20;
+                 }
+                 if (document.all) {
+                  speed = 20;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#F00F00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 30;
+                 }
+                 if (document.all) {
+                  speed = 30;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#E11E00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 40;
+                 }
+                 if (document.all) {
+                  speed = 40;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#D22D00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 50;
+                 }
+                 if (document.all) {
+                  speed = 50;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#C33C00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 60;
+                 }
+                 if (document.all) {
+                  speed = 60;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#B44B00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 70;
+                 }
+                 if (document.all) {
+                  speed = 70;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#A55A00 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 80;
+                 }
+                 if (document.all) {
+                  speed = 80;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#966900 face=arial>&lt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 90;
+                 }
+                 if (document.all) {
+                  speed = 90;
+                 }
+                 loop=true;
+                 testObj.down(1)"
+   onmouseout ="loop=false"
+>
+<font color=#877800 face=arial>&lt;</font>
+</a>
+
+
+
+<a href=# 
+   onmouseover ="if (document.layers) {
+                  speed = 90;
+                 }
+                 if (document.all) {
+                  speed = 90;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#788700 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 80;
+                 }
+                 if (document.all) {
+                  speed = 80;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#699600 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 70;
+                 }
+                 if (document.all) {
+                  speed = 70;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#5AA500 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 60;
+                 }
+                 if (document.all) {
+                  speed = 60;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#4BB400 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 50;
+                 }
+                 if (document.all) {
+                  speed = 50;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#3CC300 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 40;
+                 }
+                 if (document.all) {
+                  speed = 40;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#2DD200 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 30;
+                 }
+                 if (document.all) {
+                  speed = 30;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#1EE100 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 20;
+                 }
+                 if (document.all) {
+                  speed = 20;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#0FF000 face=arial>&gt;</font>
+</a>
+<a href=#
+   onmouseover ="if (document.layers) {
+                  speed = 10;
+                 }
+                 if (document.all) {
+                  speed = 10;
+                 }
+                 loop=true;
+                 testObj.up(1)"
+   onmouseout ="loop=false"
+>
+<font color=#00FF00 face=arial>&gt;</font>
+</a>
+</td></tr></table>
+
+
+</div>
+
+
+<div id="test"
+     style="position:absolute;
+            width:635;
+            top:46px;
+            left:100px;
+            clip:rect(0,635,335,0);
+            background-color: #FFFFFF;
+            visibility:hidden"
+            class="back"
+>
+ <div id="test2"
+      style="position:relative;
+             top:0; left:0"
+             class="back"
+ >
+   <pre>
+Welcome to my personal homepage.
+
+                           mike
+
+
+<strong>What's new:</strong>
+06/04 We have a new version of JNapster! Florian Student took the time
+      to develop an improved version based on my code. Many thanks
+      to him. Please check the link on the Projects --> JNapster 
+      page!
+
+04/23 I decided to (finally) download and install an icq client. So
+      you share some of my interests, I'd be happy about a little
+      chat. My number is 71772353.
+
+04/23 I've relocated to a small flat near my university. I'll try to
+      bring up some pictures if I find the time
+
+02/26 That was a busy month. I wrote some exams at university, 
+      spent two weeks of my life at work and was finally able to
+      do some work on the new version of our BBS (JKara - see 
+      projects)
+
+02/02 Time for an update :) Java Napster is in Version 0.6, has 
+      been downloaded thousands of times and people seem to be 
+      really happy with it. I do plan to finish the project in 
+      february, as there are more interesting things I want to 
+      do. I'm looking for someone who wants to continue development. 
+      <a href=mailto:daneel@tux.org>mail me</a>
+
+12/21 Ok...Java Napster is out. Find more info about it by clicking 
+      on projects --> JNapster :)
+
+12/21 Shame on me. I did not have time to update the status of my 
+      homepage because of university and stuff - sorry. The C++ 
+      project died when I became project leader of an Austrian BBS
+      (www.karanet.at), because it was a client for another Austrian 
+      BBS ;-)
+      
+      I did find time for another project, however, which I'll release 
+      within the next few days. It's a java clone of the popular 
+      Napster client (www.napster.com).
+
+09/23 You can find some nice shots of my holidays in the USA in the 
+      Gallery section :)
+
+09/13 I'm back again. Will do some work on vftp and a C++ project should 
+      start shortly too. More information on this will be available soon.
+
+08/25 I'll be out of town (ok ok...I'm going on holidays) until 13th of
+      september. I'll be back ;)
+
+08/24 I released version 0.10 of vftp. Have fun :)
+
+08/20 I released a small program which checks if a specific user of the
+      Karanet BBS is online. Get it from the projects page!
+
+08/14 I've made an alpha version of vftp available. Vftp is a ftp client
+      for the linux console which provides an interface similar to all the
+      X / Windows clients outthere. Get the alpha from the projects page!
+
+07/27 I just released a cost calculator for the different mobile
+      providers in Austria. You can find it in "projects"
+
+07/19 Just when I wanted to start doing some programming again, an evil
+      buddy wanted to show me a new computer game. I usually don't play
+      them, but this one is special. It reminds me very much of Elite.
+      It's called X and you can find info on it at www.egosoft.com
+
+07/19 I was pretty busy last week because we did the
+      live-web-presence (what a word ;)) of a big event here in
+      Austria. I hope I can finally start to enjoy the additional free
+      time I have because of the university holidays ;)
+
+07/11 From now on you can view this page in Lynx too.
+
+07/07 All exams are over - I just begin feeling human again ;)
+
+06/29 Some news on the MegaIRC Project
+
+06/28 Well, I still have one more exam to go which will be on 7th July. After 
+      that I'll finally be able to work on some of my projects. I'm really
+      looking forward to that.
+
+      Ahh..and yes...MATRIX RULEZ...I just had to say this here ;)
+</pre>
+
+ </div>
+</div>
+
+</body>
+</html>

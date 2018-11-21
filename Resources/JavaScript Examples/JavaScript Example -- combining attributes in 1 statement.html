@@ -1,0 +1,21 @@
+<html><head> <title>Combining String Attributes</title></head>
+<body>
+<script language="JavaScript">
+
+var heading = "Combining String Attributes";
+var exclusive = "Exclusive Example - Order matters";
+var inclusive = "Inclusive Example - Order doesn\'t matter";
+
+//heading
+document.write(heading.fontsize("+3").bold().italics()+"<br>"+"<br>");
+
+// exclusive example
+document.write(exclusive.fontcolor("red").fontcolor("blue")+"<br>");
+document.write(exclusive.fontcolor("blue").fontcolor("red")+"<br>");
+
+// inclusive example
+document.write(inclusive.fontsize("+2").fontcolor("green")+"<br>");
+document.write(inclusive.fontcolor("green").fontsize("+2").italics()+"<br>");
+
+</script>
+</body></html>

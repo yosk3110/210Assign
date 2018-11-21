@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Cookie Example</title>
+
+<SCRIPT type="text/JavaScript">
+
+function displayCookie()
+{  
+   document.write('Cookie contents = ' + document.cookie);
+}
+
+function createCookie(times)
+{  
+   document.cookie = ("cookie" + "=" + times);
+}
+
+function saveCookie()
+{  
+   exp=new Date();
+   year=exp.getYear();
+   year++;
+   exp.setYear(year);
+   document.cookie = (document.cookie + ";expires=" + exp.toGMTString());
+}
+
+function deleteCookie()
+{
+   exp=new Date();
+   document.cookie = ('cookie' + "=" + '0' + ";expires=" + exp.toGMTString());
+}
+</SCRIPT>
+
+<BODY>
+Before the Cookie:<br>
+<script type='text/javascript'>displayCookie()</script><br>
+
+Creating the cookie:<br><form><input name='create' value='create cookie' type='button' onClick='createCookie(1);'></form><br>
+
+Retrieve the cookie contents:<br><form><input name='display' value='display cookie' type='button' onClick='displayCookie();'></form><br>
+
+Move the cookie from temporary storage to disk and make the cookie last for one year:<br><form><input name='save' value='save cookie' type='button' onClick='saveCookie();'></form><br>
+
+Deleting the cookie by changing its expiry date to now:<br><form><input name='delete' value='delete cookie' type='button' onClick='deleteCookie();'></form><br>
+
+</body>
+</html>

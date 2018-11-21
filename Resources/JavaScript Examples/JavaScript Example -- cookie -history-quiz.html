@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<TITLE>Quiz Program</TITLE>
+<SCRIPT LANGUAGE="JavaScript"><!--
+//Question object
+function Question() {
+ this.question=Question.arguments[0]
+ var n=Question.arguments.length
+ this.answers = new Array(n-2)
+ for(var i=1; i<n-1; ++i)
+  this.answers[i-1]=Question.arguments[i]
+ this.correctAnswer=Question.arguments[n-1]
+}
+function readCookie() {
+ currentQuestion=0
+ numberOfQuestions=0
+ correctAnswers=0
+ score="None"
+ cookie=document.cookie
+ currentQuestion=getNumberValue(cookie,"currentQuestion")
+ numberOfQuestions=getNumberValue(cookie,"numberOfQuestions")
+ correctAnswers=getNumberValue(cookie,"correctAnswers")
+ if(numberOfQuestions>0)
+  score=Math.round(correctAnswers*100/numberOfQuestions)
+}
+function getNumberValue(s,n) {
+ s=removeBlanks(s)
+ var pairs=s.split(";")
+ for(var i=0;i<pairs.length;++i) {
+  var pairSplit=pairs[i].split("=")
+  if(pairSplit[0]==n) {
+   if(pairSplit.length>1) return parseInt(pairSplit[1])
+   else return 0
+  }
+ }
+ return 0
+}
+function removeBlanks(s) {
+ var temp=""
+ for(var i=0;i<s.length;++i) {
+  var c=s.charAt(i)
+  if(c!=" ") temp += c
+ }
+ return temp
+}
+function askNextQuestion() {
+ document.writeln("<H4 ALIGN='CENTER'>"
+  +qa[currentQuestion].question+"</H4>")
+ displayAnswers()
+}
+function displayAnswers() {
+ document.writeln('<FORM NAME="answerForm">')
+ for(var ii=0;ii<qa[currentQuestion].answers.length;++ii) {
+  document.writeln('<H4 ALIGN="CENTER">')
+  document.writeln('<INPUT TYPE="RADIO" NAME="answer"> ')
+  document.writeln(qa[currentQuestion].answers[ii])
+  if(ii+1==qa[currentQuestion].answers.length) {
+   document.writeln('<BR><BR><INPUT TYPE="BUTTON"')
+   document.writeln('NAME="continue" VALUE="Continue" ')
+   document.writeln(' onClick="checkAnswers()">')
+  }
+  document.writeln('</H4>')
+ }
+ document.writeln('</FORM>')
+}
+function checkAnswers() {
+ var numAnswers=qa[currentQuestion].answers.length
+ var correctAnswer=qa[currentQuestion].correctAnswer
+ for(var jj=0;jj<numAnswers;++jj) {
+  if(document.answerForm.elements[jj].checked) {
+   if(jj==correctAnswer){
+    correct()
+     break
+   }else{
+     incorrect()
+     break
+   }
+  }
+  if(jj==numAnswers){
+   incorrect()
+   break
+  }
+ }
+}
+function correct() {
+ ++currentQuestion
+ ++numberOfQuestions
+ ++correctAnswers
+ updateCookie()
+ location.reload(true)
+}
+function incorrect() {
+ ++numberOfQuestions
+ updateCookie()
+ alert("Incorrect!")
+ location.reload(true)
+}
+function updateCookie() {
+ document.cookie="currentQuestion="+currentQuestion
+ document.cookie="numberOfQuestions="+numberOfQuestions
+ document.cookie="correctAnswers="+correctAnswers
+}
+function endQuiz() {
+ document.cookie="currentQuestion=0"
+ document.cookie="numberOfQuestions=0"
+ document.cookie="correctAnswers=0"
+ document.writeln('<FORM NAME="finishedForm">')
+ document.write("<H4 ALIGN='CENTER'>")
+ document.write("Congratulations! You have finished this quiz.")
+ document.write('<BR><BR><INPUT TYPE="BUTTON" ')
+ document.writeln('NAME="restart" VALUE="Restart" ')
+ document.writeln(' onClick="restartQuiz()">')
+ document.writeln("</H4>")
+ document.writeln('</FORM>')
+}
+function restartQuiz() {
+ location.reload(true)
+}
+// --></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="history.js"><!--
+// --></SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE="JavaScript"><!--
+readCookie()
+document.writeln("<H1 ALIGN='CENTER'>"+pageHeading+"</H1>")
+document.writeln("<P ALIGN='RIGHT'><B>Questions: "
+ +numberOfQuestions+"<BR>")
+document.writeln("Correct Answers: "+correctAnswers+"<BR>")
+document.writeln("Score: "+score+"</B></P>")
+if(currentQuestion >= qa.length) endQuiz()
+else askNextQuestion()
+// --></SCRIPT>
+</BODY>
+</HTML>

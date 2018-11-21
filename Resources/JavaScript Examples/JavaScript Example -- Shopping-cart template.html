@@ -1,0 +1,102 @@
+<html>
+<!-- Used with permission. Visit us at: --> 
+<!--     http://www.xmlnexus.com     --> 
+<head><title>X-Cart the Free XML Shopping Cart</title></head>
+<body>
+<SCRIPT LANGUAGE="JavaScript">
+
+function buyItem(newItem, newPrice, newQuantity) {
+		newItem = document.form1.SORT.value;
+		newPrice = document.form1.PRICE.value;
+		newQuantity = document.form1.COUNT.value;
+
+                if (newQuantity <= 0) {
+                        rc = alert('Zero is not a quantity.');
+                        return false;
+                }
+                if (newQuantity >= 0) {
+                        index = document.cookie.indexOf("MyCart");
+                        countbegin = (document.cookie.indexOf("=", index) + 1);
+                        countend = document.cookie.indexOf(";", index);
+                        if (countend == -1) {
+                                countend = document.cookie.length;
+			   	     window.location = "basket3.html";
+                        }
+                        document.cookie="MyCart="+document.cookie.substring(countbegin, countend)+"["+newItem+","+newPrice+"^"+newQuantity+"]";
+                }
+                return true;
+        }
+	 function resetShoppingCart() {
+                index = document.cookie.indexOf("MyCart");
+                document.cookie="MyCart=.";
+        }
+
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+    if(document.images) {
+                xover = new Array(9);
+                xout = new Array(9);
+                xover[1]=new Image;
+                xout[1]=new Image;
+                for(var n=2;n<=8;n++) {
+                        xover[n]=new Image;
+                        xout[n]=new Image;
+                }
+                for(var n=1;n<=8;n++) {
+                        xover[n].src=""+n+"b.gif";
+                        xout[n].src=""+n+".gif";
+                }
+        }
+        function xOn(i) {
+                if(document.images) document.images["x" + i].src=xover[i].src;
+        }
+        function xOff(i) {
+                if(document.images) document.images["x" + i].src=xout[i].src;
+        }
+</script>
+<table  border=0 cellpadding=0 cellspacing=0 width=675><tr><td bgcolor=tan width=675 height=25>&nbsp;</td></tr></table>
+<table border=0 cellpadding=0 cellspacing=0 width=675>
+  <tr>
+	<td  width=100>
+	  <table  border=0 cellpadding=0 cellspacing=0>
+		<TR><TD align=center width=100 height=72><A HREF="basket3.html"><IMG SRC="cbut6b.GIF" WIDTH="72" HEIGHT="72" BORDER=0></A></TD></TR>
+    		<P><TR><TD align=center width=100 height=30>&nbsp;</TD></TR></P>
+		<TR><TD align=center  width=100 height=72><A HREF='http://www.xmlnexus.com'><IMG SRC="cbut4b.GIF" WIDTH="72" HEIGHT="72" BORDER=0></A></TD></TR>
+	  </table>
+	</td>
+	<td bgcolor=antiquewhite width=475>
+<center><font face="arial" size=6 color=sienna><b>Bracket-Mania!</b></font></center>
+<center><font face="arial" size=-2>Click on the gray button to order.</font></center><P>
+
+<div id="layer1" style="position:absolute; left:280; top:140; width:120; height:80; background-color:tan; border: 3pt ridge wheat;"><center><font face="arial" size=4 color=sienna><b>ID Number</b></font></center></div>
+<div id="layer2" style="position:absolute; left:415; top:100; width:145; height:160; background-color:tan; border: 3pt ridge wheat;"><center><font face="arial" size=4 color=sienna><b>Image</b></font></center></div>
+
+
+<XML id="myProducts" SRC="products1.xml"></XML>
+
+<form name="form1">
+&nbsp;<font face="arial" size=4 color=sienna><b>Product:</b></font><P>&nbsp;<button ID="SORT" DATASRC="#myProducts" DATAFLD="SORT" onClick="buyItem('','',1);"></button><P>
+&nbsp;<font face="arial" size=4 color=sienna><b>Price:</b></font>$<span id="showPRICE"  DATASRC="#myProducts" DATAFLD="PRICE"></span><input id="PRICE" type=hidden DATASRC="#myProducts" DATAFLD="PRICE"><P>
+&nbsp;<font face="arial" size=4 color=sienna><b>Quantity:</b></font><input id="COUNT" size=2 maxlength=2 value=1>
+
+<div id="layer1a" style="position:absolute;left:305; top:170; width:70; height:30; background-color:whitesmoke; border: 4pt inset honeydew;"  DATASRC="#myProducts" DATAFLD="IDNUM"></div><P>
+<div id="layer2a" style="position:absolute;left:430; top:130; width:108; height:108; background-color:papayawhip; border: 4pt inset bisque;" DATAFORMATAS="HTML" DATASRC="#myProducts" DATAFLD="IMAGE"></div><P>
+
+<center><table border=0 cellpadding=0 cellspacing=0>
+    <tr>
+      <td><img name="x1" SRC="1.gif" alt="bottom" onclick="myProducts.recordset.MoveLast()" title="Last Record" onMouseOver=xOn("1") onMouseOut=xOff("1")></td>
+      <td><img name="x2" SRC="2.gif" alt="next" onclick="if (! myProducts.recordset.EOF) myProducts.recordset.MoveNext(); else myProducts.recordset.MoveFirst()" title="Next Record" onMouseOver=xOn("2") onMouseOut=xOff("2")></td>
+      <td><img name="x3" SRC="3.gif" alt="prev" onclick="if (! myProducts.recordset.BOF) myProducts.recordset.MovePrevious(); else myProducts.recordset.MoveLast()" title="Previous Record" onMouseOver=xOn("3") onMouseOut=xOff("3")></td>
+      <td><img name="x4" SRC="4.gif" alt="top" onclick="myProducts.recordset.MoveFirst()" title="First Record" id="cmdFirst" onMouseOver=xOn("4") onMouseOut=xOff("4")></td>
+    </tr>
+</table></form></center>
+<center><font face="arial" size=-2>Click arrows to page through database.</font></center>
+	</td>
+	<td bgcolor=tan width=50>&nbsp;</td>
+	<td bgcolor=antiquewhite width=50>&nbsp;</td>
+  </tr>
+</table>
+<table  border=0 cellpadding=0 cellspacing=0 width=675><tr><td bgcolor=tan width=675 height=40>&nbsp;</td></tr></table>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<head>
+   <title>Form Validation</title>
+
+<!--
+   This script tests the behaviour of the browser when multiple script tags are used.
+   When a language is specified in the first tag, the browser expects the rest of the
+   tags to contain that language unless they specify otherwise.  The HTML page can
+   contain many tags with different languages as long as they each specify the
+   language attribute.
+   In this case, the first tag contains VBScript, and when it runs an error occurs on
+   the second script tag because the browser is expecting VBScript.  We can
+   avoid the error by explicitly delaring the second script tag to contain JavaScript.
+-->
+
+<SCRIPT LANGUAGE="VBScript"> 
+<!--
+   MsgBox "This came from the first script tag"
+-->
+</SCRIPT>
+
+<script>
+   alert("This came from the second script tag");
+</script>
+</head>
+<body bgcolor=red>
+Testing multiple script languages in one HTML file
+</body>
+</html>

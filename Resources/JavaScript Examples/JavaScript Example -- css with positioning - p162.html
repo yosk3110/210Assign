@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>CSSP changing position</title>
+
+</head>
+
+<body>
+
+<style type="text/CSS">
+   <!--
+   #truck {position:absolute; top:100; left:15; visibility:visible;}
+   -->
+</style>
+
+<span ID="truck">
+   <img name="truck_img" src="images/truck.gif">
+</span>
+
+<script type="text/JavaScript">
+   var isNav4, isIE4;
+   var range = "";
+   var styleObj = "";
+   var index;
+   var position;
+   var timeoutID;
+
+   if (navigator.appVersion.charAt(0) == "4")
+      {
+      if (navigator.appName == "Netscape")
+         {
+         isNav4 = true;
+         }
+      else
+         {
+         isIE4 = true;
+         range = ".all";
+         styleObj = ".style";
+         }
+      }
+
+   function move_truck(position)
+      {
+      if (position < 750)
+         {
+         if (isNav4)
+            {
+            document.truck.left += 5;
+            }
+         if (isIE4)
+            {
+            document.all.truck.style.pixelLeft += 5;
+            }
+         }
+      }
+
+   function start_truck()
+      {
+      clearTimeout(timeoutID);
+      if (isNav4)
+         {
+         var position = document.truck.left;
+         }
+      else
+         {
+         var position = document.all.truck.style.pixelLeft;
+         }
+      move_truck(position);
+      timeoutID = setTimeout("start_truck()", 3);
+      }
+
+   function stop_truck()
+      {
+      if (isNav4)
+         {
+         document.truck.left = 15;
+         }
+      else
+         {
+         document.all.truck.style.pixelLeft = 15;
+         }
+      clearTimeout(timeoutID);
+      }
+
+</script>
+
+<form name="myform" method="post">
+
+   <input type="button" name="stop" value="Start Truck" onClick="start_truck();"><br>
+
+   <input type="button" name="refresh" value="Refresh" onClick="stop_truck();">
+
+</form>
+</body>
+</html>

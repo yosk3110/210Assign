@@ -1,0 +1,40 @@
+<html>
+<head><title>Annotated OnMouseover</title></head>
+
+<body>
+<center>
+<table width=45% border=0>
+<tr><td width=305 align=left>
+
+<script type="text/JavaScript">
+   function settext1(txt)
+      {
+      document.form1.text1.value = txt
+      return true;
+      }
+
+   function settext2(txt)
+      {
+      document.form2.text2.value = txt
+      return true;
+      }
+</script>
+
+<h3 align=center></a>Which page do you want to go to?</h3>
+</a>
+<h4><a href="local.html" onmouseover='settext1("local.html"); settext2("Links to one of your own local files called local.html")' target=_top>Local File</a><br>
+
+<a href="http://www.dlcwest.com/~hpeters" onmouseover='settext1("http://www.dlcwest.com/~hpeters");  settext2("Go to Harvs WebPage")' target=_top>Harv's WebPage</a><br>
+
+<form name="form1">
+<input type="text" name="text1" size=30>
+</form>
+<form name="form2">
+<TEXTAREA rows=5 cols=25 wrap="virtual" NAME="text2">
+</TEXTAREA></form>
+
+</td></tr>
+</table>
+</center>
+</body>
+</html>

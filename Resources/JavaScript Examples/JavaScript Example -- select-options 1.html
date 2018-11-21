@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Javascript Example</title>
+<script type="text/JavaScript">
+   function dumpSelectInfo(myform)
+   {
+       document.write("You selected option index: " + myform.sel1.selectedIndex + "<br>" + "The value at that index is: " + myform.sel1.options[myform.sel1.selectedIndex].value + "<br>" + "The text at that index is: " + myform.sel1.options[myform.sel1.selectedIndex].text);
+   }
+</script>
+</head>
+<body>
+<form name='form1'>
+<select name='sel1'>
+    <option value="option1">Choice1
+    <option value="option2">Choice2
+    <option value="option3">Choice3
+    <option value="option4">Choice4
+</select>
+<input type=button value="Click me" onClick="dumpSelectInfo(document.form1);">
+</form>
+</body>
+</html>

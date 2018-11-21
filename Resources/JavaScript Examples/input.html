@@ -1,0 +1,31 @@
+<html>
+<head><title>Input</title>
+
+<script language="Javascript">
+
+function update(field) {
+var result  = field.value;
+
+var output = " " + result;
+
+parent.frames[1].document.forms[0].result.value = output;
+
+}
+</script>
+</head>
+
+<body bgcolor=black text=lime>
+
+<h1>The Input Side</h1>
+
+<font size=+1 face=arial>
+<blockquote>
+Type data in the field and then click anywhere in this black area to send it to the other frame</blockquote></font>
+
+<form method=post><input type=text name="input" size="30" onChange="update(this);">
+<input type="reset" value="Clear Input">
+</form>
+<hr width=75%>
+
+</body>
+</html>

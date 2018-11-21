@@ -1,0 +1,20 @@
+<html><head><title>Table cell value changes</title></head>
+<head>
+<script language='JavaScript'>
+{
+function changecell()
+{
+document.table1.cell1.value = 'changed!';
+}
+}
+
+</script>
+</head>
+<body>
+
+<table name='table1'>
+<tr>
+<td name='cell1' onMouseOver='changecell();'>cell1</td>
+</tr>
+</table>
+</body></html>

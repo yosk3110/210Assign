@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>JS Example</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="reset.css">
+    <script type="text/javascript">
+      //alert("hell");
+      var firstName = "AAAAA";
+      var string = "55";
+      var numeric = 55;
+      var today = new Date();
+      var todayString = Date(); //without new, Date() returns a string not an object
+      var x = 5;
+    </script>
+    <title></title>
+  </head>
+  <body>
+    <script>
+      document.write("Welcome ");
+      document.writeln("Welcome");
+      //since the script is written in an html page, writeln doesnt get interpreted properly
+      document.write("<br>Break in message<br>");
+      document.write("Your Name is: " + firstName + "<br>");
+      document.write(100 + numeric + "<br>");
+      //mixed data types can be concatenated in diff ways using ()
+      document.write(100 + (numeric + "<br>"));
+      document.write("Today's date: " + today + "<br>");
+      document.write("x = " + x + "<br/>");
+      document.write("x = " + ++x + "<br/>");
+      document.write("x = " + x++ + "<br/>");
+      document.write("x = " + x + "<br/>");
+
+      //if else
+      document.write((x < 10 ) ? "true<br>" : "false<br>");
+
+    </script>
+    <!--the semicolon at the end of a line is very loose in javascript, the button will still work without it-->
+    <button type="button" name="button" onsubmit="alert('All your base');">BUTTON</button>
+  </body>
+</html>

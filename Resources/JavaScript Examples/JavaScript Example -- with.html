@@ -1,0 +1,43 @@
+<html>
+<head>
+   <title>Form Validation</title>
+   <script type="text/JavaScript">
+
+      function validateForm(form)
+         {
+         if (form.elements[0].value == "")
+            {
+            alert("Userid must have a value.");
+            form.elements[0].focus();
+            return;
+            }
+         if (form.elements[1].value == "")
+            {
+            alert("Password must have a value.");
+            form.elements[1].focus();
+            return;
+            }
+           document.form1.submit();
+         }
+   </script>
+</head>
+<body bgcolor=red>
+<form method="post" action="mailto:hpeters@dlcwest.com" name="form1">
+   User ID: <input type="text" name="userid" value=""><br>
+   Password: <input type="password" name="password" value=""><br>
+   <input type="button" name="submit" value="Send" onClick="validateForm(this.form);">
+</form>
+<script type="text/javascript">
+//<script language="javascript">
+//the with statement is the equivalent of using the full hierarchical name
+//document.form1.userid.value = "";
+//document.form1.password.value = "";
+with(document.form1)
+{
+   userid.value = "";
+   password.value = "";
+}
+
+</script>
+</body>
+</html>

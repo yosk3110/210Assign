@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>image handling</title>
+</head>
+
+<body bgcolor="yellow">
+<center>
+<font face=arial size=+1>
+This script loads an array with image source names and displays the array.
+</font><br>
+
+<script type="text/JavaScript">
+photo = new Array();
+for (i=0; i<5; i++)
+   {
+   photo[i] = new Image( );
+   photo[i].src ="images/photo" + i + ".gif";
+   }
+
+document.write("<img src='images/photo" + i + ".gif' height='100' width='100'>");
+
+</script>
+
+<hr width=75%>
+
+<form>
+<input type=button value="picture0" onClick="document.images[0].src = photo[0].src;">
+<input type=button value="picture1" onClick="document.images[0].src = photo[1].src;">
+<input type=button value="picture2" onClick="document.images[0].src = photo[2].src;">
+</form>
+
+
+
+</center>
+</body>
+</html>

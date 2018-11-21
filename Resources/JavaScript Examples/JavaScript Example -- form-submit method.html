@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>form autosubmit</title>
+</head>
+
+<body bgcolor="yellow">
+<center><font face=arial size=+1>
+Enter your name in the text field.  When you press the Enter key the form will be submitted!</font>
+
+<form onSubmit="alert('The form is about to be submitted');" action="mailto:harvey.peters@shaw.ca" name="form1" method="post">
+<input type="text" name="name1" value="Name here." onChange="document.forms[0].submit();" >
+<!--  <input type=submit value="click"> -->
+</form>
+
+</center>
+<hr width=75%>
+
+</body>
+</html>

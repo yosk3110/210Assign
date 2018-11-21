@@ -1,0 +1,27 @@
+<html>
+<html><head><title>Usemaps</title>
+<script language="Javascript">
+
+function playSound() {
+location = "howl1.au";
+}
+function Nfld ()	{
+if (confirm('You are about to visit the \"Government of Newfoundland\" website.\n Click \"Ok\" to go ahead or \"Cancel\" to return.'))
+	{
+	   window.open("http://www.gov.nf.ca/");
+	}
+}
+</script></head>
+<body>
+<center><img border=0 src="media/canmap.gif" usemap="#northam">
+<map name="northam">
+<!-- note:  the # in the href value prevents the browser from linking to the current directory when this link is clicked -->
+<area shape="rect" coords="24,154,80,260" href="#" onMouseOver="playSound();">
+<area shape="rect" coords="180,310,230,450" href="" onClick="location ='http://www.gov.sk.ca';">
+          <!-- note: the use of location works in Netscape but not in IE when href="#" is used
+		         however, if the href="#" is removed, it works in IE, but not in Netscape,
+				 although it doesn't display the "hand" mouse pointer. -->
+<area shape="circle" coords="454,368,40" href="#" onMouseOut="alert('Je me souviens'); window.status='It Worked!'; return true;">
+<area shape="poly" coords="556,282,612,292,572,334"  href="#" onClick="Nfld();">
+</map>
+</body></html>

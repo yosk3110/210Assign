@@ -1,0 +1,45 @@
+<html>
+<head><title>Changing text</title></head>
+<body>
+<script type="text/JavaScript">
+var i = 0;
+   function changeContent(what)
+      {
+      if (document.all)
+         {
+         what.innerHTML = "<h1>GoodBye!</h1>";
+         }
+      else
+         {
+         i++
+         what.document.open( );
+         what.document.write(i + "<h1>ThankYou!</h1>");
+         what.document.close( );
+         }
+      }
+
+   function changeContentOut(what)
+      {
+      if (document.all)
+         {
+         what.innerHTML = "<img src='images/truck.gif'>";
+         }
+      else
+         {
+         i++
+         what.document.open( );
+         what.document.write("<img src='images/truck.gif'>");
+         what.document.close( );
+         }
+      }
+</script>
+text
+<div onMouseOver="changeContent(this)" onMouseOut="changeContentOut(this)">
+<layer onMouseOver="changeContent(this)" onMouseOut="changeContentOut(this)">
+<h1>Move the mouse over this text</h1>
+<h2>And it will change</h2>
+</layer>
+</div>
+
+</body>
+</html>

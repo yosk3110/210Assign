@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Navigating Backwards and Forwards  </title>
+
+<script language="JavaScript">
+
+function goback() {
+history.go(-5);
+//history.back();
+}
+
+function goahead() {
+history.go(+1);
+//history.forward();
+}
+</script>
+</head>
+
+<body>
+
+<form>
+<input type="button" name="button" Value="Go Back 1" onClick="goback()">
+<input type="button" name="button" Value="Go Ahead 1" onClick="goahead()">
+</form>
+
+</body>
+</html>

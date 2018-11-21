@@ -1,0 +1,29 @@
+<html>
+<head>
+<script language="JavaScript">
+
+WinOptions="status=no,toolbar=no,directories=no,menubar=no,location=no,scrollbars=no,resizable=no,height=400,width=600";
+
+WinOptions2="status=no,toolbar=no,directories=no,menubar=no,location=no,scrollbars=yes,resizable=no";
+ function LoadOnTop()
+      { 
+          if (self.name=="") self.name="NoName";  
+          if (self.name != parent.name)  window.parent.location.href=self.location.href;
+      }
+
+</script>
+<title>No Toolbar</title>
+</head>
+
+<body>
+
+<center><table width=75% border=1>
+
+<tr>
+<td>
+<a href="http://www.yahoo.com" target="dlr" onClick="window.open('','dlr',WinOptions);"><font face="Arial" color="Navy">Go to Yahoo in 400 X 600 no resize</A>
+</td>
+<td>
+<a href="http://www.lycos.com" target="dlr" onClick="window.open('','dlr',WinOptions2);window.resizeTo(screen.width,screen.height);"><font  face="Arial" color="Navy">Go to Lycos in full screen: no resize</A>
+</b></font>
+</td></tr> </table></center></body></html>
