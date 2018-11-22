@@ -43,6 +43,7 @@
       print("</table> <br>");
       include ("functions-genericinsertexample.php");
       print(buildtypestring($dbh, $finfo[0]->table));
+      insertRow();
     ?>
   </body>
 </html>

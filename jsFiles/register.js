@@ -3,21 +3,25 @@ function validate(theForm){
   // you can pass through the form object as an argument too
   var myForm = document.getElementById(form1);	//can get form object by id
   var formReg = /^[A-Z]\d[A-Z] ?\d[A-Z]\d$/i
+  var emailReg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/
   var message = "";
-  //forms is the array of forms on a page
+  //check entries if they are valid through regEx
   if(!formReg.test(theForm.postal.value)){
-    //alert("Postal Code incorrect");
     message += "Invalid Postal Code format: Should be X9X 9X9<br>";
-    console.log(message);
     theForm.postal.focus();
     theForm.postal.style.backgroundColor = "pink";
+    document.getElementById("warning").innerHTML = message;
+  }
+  if(!emailReg.test(theForm.email.value)){
+    message += "Invalid email format: Should be user.name@email.com";
+    theForm.email.focus();
+    theForm.email.style.backgroundColor = "pink";
     document.getElementById("warning").innerHTML = message;
   }
   if(message)
   {
     return false;
   }
-
   return confirm("Do you want to submit your form?");
 }
 //if a text box was recolored reset color

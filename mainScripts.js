@@ -1,4 +1,4 @@
-//Some reusable functions
+
 
 function getToday(){
   var today = new Date();

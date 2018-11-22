@@ -1,4 +1,5 @@
 <?php
+  session_start();
   $pageTitle = "Register";
   $activePage = "Register"; //flag to inform which page is open
 ?>
@@ -72,7 +73,7 @@
             <li class="rowElements">
               <label for="email">Email</label>
               <input type="text" id="email" name="email"
-                onfocus="tipsUpdate(tips, this);" onblur="tips.style.visibility = 'hidden'" required>
+                onfocus="tipsUpdate(tips, this);" onblur="tips.style.visibility = 'hidden'">
             </li>
             <li class="rowElements">
               <label for="user">User Name</label>
@@ -91,7 +92,14 @@
           </ul>
         </form>
         <p id="tips" class="tips"></p>
-        <p id="warning" class="warning"></p>
+        <p id="warning" class="warning">
+          <?php
+            if (isset($_SESSION["message"])) {
+              print($_SESSION["message"]);
+              $_SESSION["message"] = "";
+            }
+          ?>
+        </p>
       </div>
     </div>
     <?php include 'templates/footer.php' ?>

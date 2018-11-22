@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/tempStyle.css">
   <link rel="stylesheet" href="css/homeStyle.css">
+  <script type="text/javascript" src="mainScripts.js"></script>
   <title><?php echo $activePage ?></title>
   <script type="text/javascript">
     var travelImages = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
@@ -49,6 +50,11 @@
         <?php include 'templates/navbar.php' ?>
 			</div>
 			<div class="pageBody">
+        <h1 style="text-align:center">
+          <script>
+    				document.write("Today: " + getToday());
+    			</script>
+        </h1>
         <h2>Some Amazing Travel Destinations</h2>
         <div class="infoBox">
           <div class="descBox">
