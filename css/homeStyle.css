@@ -18,3 +18,11 @@ h2{
   text-align: center;
   color:  #07212c;
 }
+@media (max-width: 500px){
+  .infoBox{
+    flex-direction: column;
+  }
+  .imgBox{
+    width:90%;
+  }
+}

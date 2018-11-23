@@ -5,36 +5,48 @@
     $dbh = mysqli_connect($host, $user, $pwd, $dbname);
     if(!$dbh){
       print("Connection Error: ".mysqli_connect_errno().":".mysqli_connect_error().PHP_EOL);
-      logError(mysqli_connect_errno(), mysqli_connect_errno());
+      $fh = fopen("errorlog.txt", "a");
+      fwrite($fh, mysqli_connect_errno()." : ");
+      fwrite($fh, mysqli_connect_error()."\n");
+      fclose($fh);
       return false;
     }
     return $dbh;
   }
 
-  function logError($errno, $error){
+  function logSQLError($stmt){
     $fh = fopen("errorlog.txt", "a");
     fwrite($fh, mysqli_errorno($stmt)." : ");
     fwrite($fh, mysqli_stmt_error($stmt)."\n");
     fclose($fh);
   }
 
-  function insertAgent($agent){
-    $sql = "INSERT INTO `agents`(`AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`) VALUES (?,?,?,?,?,?,?)";
-    $dbh = mysqli_connect("localhost", "yosk", "password", "travelexperts");  //user and pass is assumed
-    if(!$dbh){
-      print("Connection Error: ".mysqli_connect_errno().":".mysqli_connect_error().PHP_EOL);
-      exit();
+//inserts a row of data into a table
+  function insertRow($tableName, $newRow){
+    $dbh = dbConnect();
+    //create stmt from given array
+    $keys = array_keys($newRow);
+    $keystring = implode(",", $keys);
+    $valuesString = "";
+    $arrayLength = count($keys);
+    for ($i=0; $i < $arrayLength; $i++)
+    {
+      $valuesString .= "?";
+      if($i < $arrayLength - 1){
+        $valuesString .= ",";
+      }
     }
+    $sql = "INSERT INTO $tableName($keystring)"."VALUES ($valuesString)";
     $stmt = mysqli_prepare($dbh, $sql); //creates a statement, a container we can pass back and forth from database
-    mysqli_stmt_bind_param($stmt, "ssssssi", $agent["AgtFirstName"], $agent["AgtMiddleInitial"],
-      $agent["AgtLastName"], $agent["AgtBusPhone"], $agent["AgtEmail"], $agent["AgtPosition"], $agent["AgencyId"]);  //second param is the datatype of what we are inserting
-      $result = mysqli_stmt_execute($stmt);
+    $args = array(buildtypestring($dbh, $tableName));
+		foreach ($keys as $key)
+		{
+			$args[] = &$newRow[$key];  //array of references to the table content
+		}
+		call_user_func_array(array($stmt,"bind_param"), $args); //call bind param on stmt with args
+    $result = $stmt->execute();
       if(!$result){
-        print( mysqli_stmt_error($stmt));
-        $fh = fopen("../errorlog.txt", "a");
-        fwrite($fh, mysqli_errorno($stmt)." ");
-        fwrite($fh, mysqli_stmt_error($stmt)."\n");
-        fclose($fh);
+        logSQLError($stmt);
         mysqli_close($dbh);
         return false;
       }
@@ -42,8 +54,6 @@
       return true;
   }
 
-  //param: database handle, table reference
-  //return: string
   //function taken from example
   function buildtypestring($dbh, $tableName)
   {
@@ -88,57 +98,6 @@
       }
     }
     return $typestring;
-  }
-    //insert into any given table
-  function insertRow($table, $data)
-  {
-    include("variables.php");
-    $message = "";
-    $keys = array_keys($data);
-    $keystring = implode(",", $keys);
-    print("keystring: $keystring<br />");
-    $questionmarks = "";
-    for ($i=0; $i<count($keys); $i++)
-    {
-      $questionmarks .= "?,";
-    }
-    $questionmarks = rtrim($questionmarks, ",");
-    $sql = "INSERT INTO $table($keystring)"
-      . "VALUES ($questionmarks)";
-    print($sql . "<br />");
-
-    $dbh = mysqli_connect($host, $user, $password, $dbname);
-    if (!$dbh)
-    {
-      print(mysqli_connect_error() . "<br />");
-      exit();
-    }
-
-    //get table info to build type string for bind param function
-    $typestring = buildtypestring($dbh, $table->table);
-    print($typestring . "<br />");
-
-    $stmt = mysqli_prepare($dbh, $sql);
-
-    //bind the data
-    $args = array($typestring);
-    reset($keys);
-    foreach ($keys as $key)
-    {
-      $args[] = &$data[$key];
-    }
-    call_user_func_array(array($stmt,"bind_param"), $args);
-
-    if ($result = mysqli_stmt_execute($stmt))
-    {
-      $message = "Inserted 1 row";
-    }
-    else
-    {
-      $message = "Insert failed, contact tech support";
-    }
-    mysqli_close($dbh);
-    return $message;
   }
   function updateProduct($product){
     $dbh = dbConnect();

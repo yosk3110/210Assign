@@ -10,7 +10,7 @@
   $urls["Banff"] = "http://banffandbeyond.com/";
 
   $host = "localhost";
-  $user = "yosk";
+  $user = "harv";
   $pwd = "password";
   $dbname = "travelexperts";
 ?>

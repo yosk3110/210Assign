@@ -1,6 +1,8 @@
 <?php
   $pageTitle = "Welcome To Travel Experts";
-  $activePage = "Home"; //flag to inform which page is open
+  $activePage = "Home"; //flag to inform which page is open\
+  date_default_timezone_set("MST");
+  $hour = date("H");
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,25 +51,42 @@
 			<div class="pageTop">
         <?php include 'templates/navbar.php' ?>
 			</div>
-			<div class="pageBody">
+			<div id="pBody" class="pageBody">
         <h1 style="text-align:center">
           <script>
-    				document.write("Today: " + getToday());
+    				document.write("Today: " + getToday() + "<br>");
     			</script>
-        </h1>
-        <h2>Some Amazing Travel Destinations</h2>
-        <div class="infoBox">
-          <div class="descBox">
-          <script type="text/javascript">
-            for (var i = 0; i < travelImages.length; i++) {
-              document.write("<h3 onmouseover='displayImage(" + i + ");'>" + travelDetails[i] + "</h3>");
+          <?php
+            if($hour >= 4 and $hour < 8){
+              print("It's the Dawn of a New Day");
             }
-          </script>
+            if($hour >= 8 and $hour < 12){
+      				print("Good Morning");
+      			}
+      			elseif ($hour >= 12 and $hour < 18) {
+      				print("Good Afternoon");
+      			}
+      			else{
+      				print("Good Evening");
+      			}
+          ?>
+        </h1>
+        <h2 id="infoBoxTitle0">Some Amazing Travel Destinations</h2>
+        <div class="infoBox" id="infoBox0">
+          <div class="descBox">
+            <script type="text/javascript">
+              for (var i = 0; i < travelImages.length; i++) {
+                document.write("<h3 onmouseover='displayImage(" + i + ");'>" + travelDetails[i] + "</h3>");
+              }
+            </script>
           </div>
           <div class="imgBox">
             <img id="imageTag0" src="images/kyoto.jpeg">
           </div>
         </div>
+        <script type="text/javascript">
+          setTimeOfDayStyle();  //changes the back ground and text color depending on time
+        </script>
         <!--
         <div class="flex-gallery">
           <div class="media"><img src="photos/horse.png" alt="horse"></div>

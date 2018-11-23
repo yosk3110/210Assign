@@ -1,5 +1,5 @@
 <?php
-    include("functions.php");
+    include("../dbfunctions.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,12 +20,30 @@
         $agent["AgtPosition"] = "Junior Agent";
         $agent["AgencyId"] = 1;
 
-        if (insertAgent($agent)){
+        $tableName = "agents";
+        $keys = array_keys($agent);
+        print_r($keys);
+        $keystring = implode(",", $keys);
+        print("<br>keystring: $keystring<br />");
+        $valuesString = "";
+        $arrayLength = count($keys);
+        for ($i=0; $i < $arrayLength; $i++)
+    		{
+    			$valuesString .= "?";
+          if($i < $arrayLength - 1){
+            $valuesString .= ",";
+          }
+    		}
+        print($valuesString."<br>");
+        $sql = "INSERT INTO agents($keystring)"
+          . "VALUES ($valuesString)";
+        print($sql . "<br />");
+        if (insertRow("agents", $agent)){
             print("Agent data inserted into database");
         }
-    else{
-        print("Insert fail.");
-    }
+  //else{
+  //      print("Insert fail.");
+  //  }
     ?>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php
-	function buildtypestring($dbh, $tableName)
+	function buildtypestring($dbh)
 	{
 			//get table info to build type string for bind param function
 		$typestring = "";
-		$res = mysqli_query($dbh, "DESCRIBE $tableName");
+		$res = mysqli_query($dbh, "DESCRIBE agents");
 		while($row = mysqli_fetch_assoc($res))
 		{
 			if ($row["Extra"] != "auto_increment")
@@ -44,7 +44,7 @@
 		return $typestring;
 	}
 
-	function insertRow($tableName, $data)
+	function insertRow($table, $data)
 	{
 		include("variables.php");
 		$message = "";
@@ -57,23 +57,23 @@
 			$questionmarks .= "?,";
 		}
 		$questionmarks = rtrim($questionmarks, ",");
-		$sql = "INSERT INTO $tableName($keystring)"
+		$sql = "INSERT INTO $table($keystring)"
 			. "VALUES ($questionmarks)";
 		print($sql . "<br />");
-
+		
 		$dbh = mysqli_connect($host, $user, $password, $dbname);
 		if (!$dbh)
 		{
 			print(mysqli_connect_error() . "<br />");
 			exit();
 		}
-
+		
 		//get table info to build type string for bind param function
-		$typestring = buildtypestring($dbh, $table->table);
+		$typestring = buildtypestring($dbh);
 		print($typestring . "<br />");
-
+		
 		$stmt = mysqli_prepare($dbh, $sql);
-
+		
 		//bind the data
 		$args = array($typestring);
 		reset($keys);
@@ -82,7 +82,7 @@
 			$args[] = &$data[$key];
 		}
 		call_user_func_array(array($stmt,"bind_param"), $args);
-
+		
 		if ($result = mysqli_stmt_execute($stmt))
 		{
 			$message = "Inserted 1 row";
@@ -95,3 +95,7 @@
 		return $message;
 	}
 ?>
+
+
+
+
