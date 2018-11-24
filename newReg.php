@@ -1,7 +1,7 @@
 <?php
   session_start();
   $pageTitle = "Register";
-  $activePage = "Register"; //flag to inform which page is open
+  $activePage = "Registeration"; //flag to inform which page is open
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="jsFiles/register.js"></script>
   <link rel="stylesheet" href="css/tempStyle.css">
   <link rel="stylesheet" href="css/register.css">
-  <title>Registeration Form</title>
+  <title><?php echo $activePage ?></title>
 </head>
 <body>
 	<div class="pageWrapper">

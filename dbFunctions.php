@@ -1,5 +1,7 @@
 <?php
   include("variables.php");
+  //attempts to connect to the db
+  //returns: dbh or false
   function dbConnect(){
     global $host, $user, $pwd, $dbname;
     $dbh = mysqli_connect($host, $user, $pwd, $dbname);
@@ -16,7 +18,7 @@
 
   function logSQLError($stmt){
     $fh = fopen("errorlog.txt", "a");
-    fwrite($fh, mysqli_errorno($stmt)." : ");
+    fwrite($fh, mysqli_stmt_errno($stmt)." : ");
     fwrite($fh, mysqli_stmt_error($stmt)."\n");
     fclose($fh);
   }
@@ -43,6 +45,8 @@
 		{
 			$args[] = &$newRow[$key];  //array of references to the table content
 		}
+    print_r($args);
+
 		call_user_func_array(array($stmt,"bind_param"), $args); //call bind param on stmt with args
     $result = $stmt->execute();
       if(!$result){

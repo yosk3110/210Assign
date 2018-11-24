@@ -22,10 +22,10 @@
       echo 'Invalid password.';
   }
 
-  $hash = password_hash("pass1", PASSWORD_DEFAULT);//remember to remove newline if needed
+  $hash = password_hash("password", PASSWORD_DEFAULT);//remember to remove newline if needed
   echo $hash."<br>";
-  $hash = password_hash("pass2", PASSWORD_DEFAULT);//remember to remove newline if needed
+  $hash = password_hash("password", PASSWORD_DEFAULT);//remember to remove newline if needed
   echo $hash."<br>";
-  $hash = password_hash("pass3", PASSWORD_DEFAULT);//remember to remove newline if needed
+  $hash = password_hash("password", PASSWORD_DEFAULT);//remember to remove newline if needed
   echo $hash."<br>";
 ?>

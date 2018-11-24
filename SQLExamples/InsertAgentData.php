@@ -1,9 +1,9 @@
 <?php
-  include("functions.php");
+  include("../dbfunctions.php");
   if (isset($_REQUEST["AgtFirstName"])){
     //validate form data
     //if okay pass to insertAgent() function
-    if(insertAgent($_REQUEST)){
+    if(insertRow("agents", $_REQUEST)){
       print("Data insert success");
     }
     else{

@@ -2,7 +2,7 @@
   if(!isset($pageTitle)){
     $pageTitle = "Nav Template";
   }
-  $pageArray = array("Home" => "index.php", "Links" => "links.php","Register" => "register.php", "Contacts" => "contact.php");
+  $pageArray = array("Home" => "index.php", "Links" => "links.php","Register" => "register.php", "Contacts" => "contact.php", "Log In" => "login.php");
 ?>
     <div class="navWrapper">
       <div class="logoContainer">
