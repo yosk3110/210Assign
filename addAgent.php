@@ -1,6 +1,11 @@
 <?php
+  session_start();
   $pageTitle = "Insert New Agent";
   $activePage = "Add Agent"; //flag to inform which page is open
+  //redirect to login page if not logged in
+  if(!isset($_SESSION["AgentLogged"])){
+    header("Location: login.php");
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +24,7 @@
 			</div>
 			<div class="pageBody">
         <div class="formContainer">
-          <form class="form1" action="SQLExamples/insertAgentData.php" method="post">
+          <form class="form1" action="insertAgentData.php" method="post">
             <ul class="formlist">
               <li class="rowElements">
                 <label for="AgtFirstName">First Name</label>
@@ -48,7 +53,7 @@
               </li>
               <li class="rowElements">
                 <label for="AgtPosition">Agent Position</label>
-                <select name="AgtPosition" id="AgtPosition">
+                <select name="AgtPosition" id="AgtPosition" required>
                   <option value="">Select a position</option>
                   <option value="Junior Agent">Junior Agent</option>
                   <option value="Intermediate Agent">Intermediate Agent</option>
@@ -66,13 +71,21 @@
               <li class="rowElements">
                 <label for="AgtPassword">Agent Password</label>
                 <input type="password" id="AgtPassword" name="AgtPassword"
-                  onfocus="tipsUpdate(tips, this);" onblur="tips.style.visibility = 'hidden'" >
+                  onfocus="tipsUpdate(tips, this);" onblur="tips.style.visibility = 'hidden'">
               </li>
               <li class="rowElements">
                 <input type="submit" value="Register"/>
                 <input type="reset" value="Reset Form" onclick="return resetColor()"/>
               </li>
             </ul>
+            <p class="warningText">
+              <?php
+                if (isset($_SESSION["message"])) {
+                  print($_SESSION["message"]);
+                  $_SESSION["message"] = "";
+                }
+              ?>
+            </p>
           </form>
         </div>
 			</div>

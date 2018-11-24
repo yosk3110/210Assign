@@ -3,6 +3,7 @@
   $pageTitle = "Log In Page";
   $activePage = "Log In"; //flag to inform which page is open
 ?>
+<!--Login Page, can log in with agent ID: 25 password: password-->
 <!DOCTYPE html>
 <html>
 <head>

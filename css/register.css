@@ -51,6 +51,10 @@ input[type=reset]{
   padding:10px 15px;
   margin 5px 5px;
 }
+.warningText{
+  color: red;
+  text-align: center;
+}
 @media screen and (max-width: 500px) {
     label{
       width: 100%;

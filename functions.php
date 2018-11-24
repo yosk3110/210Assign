@@ -23,9 +23,49 @@
     fclose($fh);
   }
 
-//inserts a row of data into a table
+/**
+  *inserts a row of data into table
+  *Param: Table Object
+  *Return: Bool Success or failure
+  */
+  function insertRow($insertObject){
+    $dbh = dbConnect();
+    if(!$dbh){
+      return false;
+    }
+    $keystring = $insertObject->colString();
+    $valuesString = "";
+    for ($i=0; $i < $insertObject->getTableSize(); $i++)
+    {
+      $valuesString .= "?";
+      if($i < $insertObject->getTableSize() - 1){
+        $valuesString .= ",";
+      }
+    }
+    $sql = "INSERT INTO ".$insertObject::TABLENAME."($keystring)"." VALUES ($valuesString)";
+    $stmt = mysqli_prepare($dbh, $sql); //creates a statement, a container we can pass back and forth from database
+    //$args = array(buildtypestring($dbh, $insertObject::TABLENAME));
+    $values = $insertObject->getArray();
+    array_unshift($values, buildtypestring($dbh, $insertObject::TABLENAME));
+    call_user_func_array(array($stmt,"bind_param"), $values); //call bind param on stmt with args
+    $result = $stmt->execute();
+      if(!$result){
+        logSQLError($stmt);
+        mysqli_close($dbh);
+        return false;
+      }
+      mysqli_close($dbh);
+      return true;
+  }
+
+//inserts a row of data into a table with a table name and assoc array
+//commented out cause PHP does not support proper method overloads
+/*
   function insertRow($tableName, $newRow){
     $dbh = dbConnect();
+    if(!$dbh){
+      return false;
+    }
     //create stmt from given array
     $keys = array_keys($newRow);
     $keystring = implode(",", $keys);
@@ -57,7 +97,7 @@
       mysqli_close($dbh);
       return true;
   }
-
+*/
   //function taken from example
   function buildtypestring($dbh, $tableName)
   {
@@ -103,21 +143,4 @@
     }
     return $typestring;
   }
-  function updateProduct($product){
-    $dbh = dbConnect();
-    $sql = "UPDATE `products` SET `ProdName`= ? WHERE `ProductId` = ?";
-    $stmt = mysqli_prepare($dbh, $sql);
-    mysqli_stmt_bind_param($stmt, "si", $product["ProdName"], $product["ProductId"]);
-    if(!mysqli_stmt_execute($stmt)){
-      print(mysqli_stmt_error($stmt));
-      $fh = fopen("errorlog.txt", "a");
-      fwrite($fh, mysqli_stmt_error($stmt));
-      fclose($fh);
-      mysqli_close($dbh);
-      return false;
-    }
-    mysqli_close($dbh);
-    return true;
-  }
-
 ?>

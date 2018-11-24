@@ -5,7 +5,7 @@
     $_SESSION["message"] = "User ID and Password are Required";
     header("Location: login.php");
   }
-  include("dbFunctions.php");
+  include("functions.php");
   if(!($dbh = dbConnect())){
       $_SESSION["message"] = "Failed to connect to server";
     header("Location: login.php");
@@ -27,11 +27,8 @@
   $result = $stmt->get_result();
 
   if(($passArray = $result->fetch_array(MYSQLI_NUM)) && (password_verify($_REQUEST["AgtPassword"], $passArray[0]))){
-    //$_SESSION["AgentLoggedIn"] = true;
-    //$_SESSION["last_active"] = time();
-    //$returnPage = $_SESSION["returnPage"];
-    //unset($_SESSION["returnPage"]);
     mysqli_close($dbh);
+    $_SESSION["AgentLogged"] = true;
     header("Location: addAgent.php");
   }
   else{

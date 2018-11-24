@@ -11,6 +11,27 @@
   foreach ($keys as $key) {
     print("Key: $key, Value: $fruits[$key] <br>");
   }
+  include "Agent.php";
+
+  $agent = array();
+  $agent["AgtFirstName"] = "Fred";
+  $agent["AgtMiddleInitial"] = "S";
+  $agent["AgtLastName"] = "Smith";
+  $agent["AgtBusPhone"] = "403-123-4567";
+  $agent["AgtEmail"] = "fred@travelexperts.com";
+  $agent["AgtPosition"] = "Junior Agent";
+  $agent["AgencyId"] = 1;
+  $agent["AgtPassword"] = "password";
+  //print_r($agent);
+  $aObject = new Agent($agent);
+  print("<br>");
+  print($aObject->toString());
+  print("<br>");
+  print($aObject::TABLENAME);
+  print("<br>");
+  print_r($aObject->getArray());
+  print("<br>");
+  print($aObject->getAgtPosition());
  ?>
 
 

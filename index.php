@@ -1,104 +1,105 @@
 <?php
-	$pageTitle = "Welcome to Travel Experts";
-	$hour = date("H");
- ?>
+  session_start();
+  $pageTitle = "Welcome To Travel Experts";
+  $activePage = "Home"; //flag to inform which page is open\
+  date_default_timezone_set("MST");
+  $hour = date("H");
+?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Travel Experts</title>
-		<link rel="stylesheet" href="mainstyle.css"/>
-		<script type="text/javascript" src="mainScripts.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<header>
-		<img src="travel/logo.png" style="height:100%;">
-		<h1>Welcome To Travel Experts</h1>
-		<h2 style="text-align:center">
-			<script>
-				document.write("Today: " + getToday());
-			</script>
-		</h2>
-		</header>
-		<?php
-			if($hour >= 0 and $hour < 12){
-				print("Good Morning");
-			}
-			elseif ($hour >= 12 and $hour < 18) {
-				print("Good Afternoon");
-			}
-			else{
-				print("Good Evening");
-			}
-		?>
-		<h3>H3</h3>
-		<div class="container">
-			<div id="heroCarousel" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-traget="#heroCarousel" data-slide-to="0" class="active"></li>
-					<li data-traget="#heroCarousel" data-slide-to="1"></li>
-					<li data-traget="#heroCarousel" data-slide-to="2"></li>
-				</ol>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/tempStyle.css">
+  <link rel="stylesheet" href="css/homeStyle.css">
+  <script type="text/javascript" src="mainScripts.js"></script>
+  <title><?php echo $activePage ?></title>
+  <script type="text/javascript">
+    var travelImages = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
+    travelImages[0].src = "images/kyoto.jpeg"
+    travelImages[1].src = "images/mt-fuji.jpeg"
+    travelImages[2].src = "images/new-york.jpeg"
+    travelImages[3].src = "images/london.jpeg"
+    travelImages[4].src = "images/paris.jpeg"
+    travelImages[5].src = "images/rockies.jpeg"
+    var travelDetails = [
+      "Kyoto, Japan",
+      "Mount Fuji, Japan",
+      "New York, New York",
+      "London, UK",
+      "Paris, France",
+      "Banff, Canada"]
+    var travelUrls = [
+      "https://kyoto.travel/en",
+      "https://www.japan-guide.com/e/e2172.html",
+      "https://www.nycgo.com/",
+      "https://www.londontourism.ca/",
+      "https://en.parisinfo.com/",
+      "http://banffandbeyond.com/"]
 
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="travel/images/citypark.jpg" alt="citypark" style="width:100%;">
-					</div>
-					<div class="item">
-						<img src="travel/images/rockies.jpg" alt="rockies" style="width:100%;">
-					</div>
-					<div class="item">
-						<img src="travel/images/nightcity.jpg" alt="nightcity" style="width:100%;">
-					</div>
-				</div>
-
-				<a href="#heroCarousel" class="left carousel-control" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-		      <span class="sr-only">Previous</span>
-				</a>
-				<a class="right carousel-control" href="#heroCarousel" data-slide="next">
-		      <span class="glyphicon glyphicon-chevron-right"></span>
-		      <span class="sr-only">Next</span>
-		    </a>
+      function displayImage(index){
+        document.getElementById("imageTag0").src = travelImages[index].src;
+      }
+      //annonamous function
+      var showURL = function (index){
+        var win1 = open(travelUrls[index]);
+        var timer = setTimeout(function(){win1.close();}, 10000);
+      }
+  </script>
+</head>
+<body>
+		<div class="pageWrapper">
+			<div class="pageTop">
+        <?php include 'templates/navbar.php' ?>
 			</div>
+			<div id="pBody" class="pageBody">
+        <h1 style="text-align:center">
+          <script>
+    				document.write("Today: " + getToday() + "<br>");
+    			</script>
+          <?php
+            if($hour >= 4 and $hour < 8){
+              print("It's the Dawn of a New Day");
+            }
+            if($hour >= 8 and $hour < 12){
+      				print("Good Morning");
+      			}
+      			elseif ($hour >= 12 and $hour < 18) {
+      				print("Good Afternoon");
+      			}
+      			else{
+      				print("Good Evening");
+      			}
+          ?>
+        </h1>
+        <h2 id="infoBoxTitle0">Some Amazing Travel Destinations</h2>
+        <div class="infoBox" id="infoBox0">
+          <div class="descBox">
+            <script type="text/javascript">
+              for (var i = 0; i < travelImages.length; i++) {
+                document.write("<h3 onmouseover='displayImage(" + i + ");'>" + travelDetails[i] + "</h3>");
+              }
+            </script>
+          </div>
+          <div class="imgBox">
+            <img id="imageTag0" src="images/kyoto.jpeg">
+          </div>
+        </div>
+        <script type="text/javascript">
+          setTimeOfDayStyle();  //changes the back ground and text color depending on time
+        </script>
+        <!--
+        <div class="flex-gallery">
+          <div class="media"><img src="photos/horse.png" alt="horse"></div>
+          <div class="media"><img src="travel/images/rockies.jpg"></div>
+          <div><img src="travel/images/island.jpg"></div>
+          <div><img src="travel/images/tropicalisland.jpg"></div>
+          <div><img src="travel/images/citypark.jpg"></div>
+          <div><img src="travel/images/nightcity.jpg"></div>
+        </div>
+      -->
+			</div>
+      <?php include 'templates/footer.php' ?>
 		</div>
-
-			<!--
-			<table class="imagetable">
-				<tr>
-					<td><img src="travel/images/rockies.jpg"></td>
-					<td><img src="travel/images/island.jpg"></td>
-					<td><img src="travel/images/tropicalisland.jpg"></td>
-				</tr>
-				<tr>
-					<td><img src="travel/images/citypark.jpg"></td>
-					<td><img src="travel/images/nightcity.jpg"></td>
-				</tr>
-			</table>
-			<br clear="all"/>
--->
-		<a href="http://microsoft.com">Microsoft</a><br/>
-		<a href="http://apple.com">Apple</a><br/>
-		<a href="links.php">Links</a><br/>
-
-		<div class="flex-gallery">
-			<div class="media"><img src="photos/horse.png" alt="horse"></div>
-			<div class="media"><img src="travel/images/rockies.jpg"></div>
-			<div><img src="travel/images/island.jpg"></div>
-			<div><img src="travel/images/tropicalisland.jpg"></div>
-			<div><img src="travel/images/citypark.jpg"></div>
-			<div><img src="travel/images/nightcity.jpg"></div>
-		</div>
-
-		<nav>
-			<a href="contact.php"><img src="travel/contacts.png" class="icons"/></a>
-			<a href="register.php"><img src="travel/register.png" class="icons"/></a>
-		</nav>
-		<footer>
-			Copyright &copy; 2018
-		</footer>
-	</body>
+</body>
 </html>
